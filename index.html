@@ -5,10 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>APNG Fest Demo</title>
+
         <script src="https://cdn.jsdelivr.net/npm/apng-fest@1.0.1/dist/index.min.js"></script>
+        <style>
+            #example {
+                display: block;
+
+                margin-block: 0.5rem;
+
+                border-width: 0.25rem;
+                border-style: solid;
+            }
+        </style>
     </head>
     <body>
+        <h1>APNG Fest Demo</h1>
         <canvas id="example" width="100" height="100"></canvas>
+
         <script type="module">
             // import apng-fest into your code...
             const { APNG, Frame } = AF;
@@ -63,8 +76,15 @@
                 // stops our loop
                 clearInterval(intervalId);
 
-                // create our animated .PNG image and adds it to the DOM
+                // create our animated .PNG image
                 const image = await apng.toImg();
+
+                // add a simple message to let us know that the image is ready!
+                const text = document.createElement("p");
+                text.innerText = "Generating animated .PNG file complete!";
+
+                // add the elements to the DOM.
+                document.body.appendChild(text);
                 document.body.appendChild(image);
             }, 1000 / FPS);
         </script>
